@@ -96,7 +96,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""6c7af495-2dfb-4c0b-9d76-b36200687130"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -105,7 +105,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""name"": ""Turn"",
                     ""type"": ""Value"",
                     ""id"": ""0f9e9b7c-4adc-4934-bfd3-846f13cf5ca7"",
-                    ""expectedControlType"": ""Vector3"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -124,7 +124,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""WASD"",
                     ""id"": ""e0f70367-9004-4808-9be5-43ffa69d5879"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -133,7 +133,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""Up"",
                     ""id"": ""c2b39db2-def8-41cf-9d15-c69e5b8a1144"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
@@ -144,7 +144,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
+                    ""name"": ""Down"",
                     ""id"": ""ab1038ac-cdfb-49be-a9e1-f22ff548b41f"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
@@ -155,7 +155,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Left"",
                     ""id"": ""bea8f4c9-287e-4b80-9751-d06f56ce0c21"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
@@ -166,7 +166,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
+                    ""name"": ""Right"",
                     ""id"": ""5de9e909-61f6-49fc-af62-4818592c6057"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
@@ -179,7 +179,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""ARROWS"",
                     ""id"": ""d886d6a6-8966-4b89-b578-1955c86b1c11"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -188,7 +188,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""Up"",
                     ""id"": ""76ff8a85-f55e-4c44-8ddf-7d9f9447a870"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
@@ -199,7 +199,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
+                    ""name"": ""Down"",
                     ""id"": ""818fcdae-e7c1-46f9-8e1c-3c9710449aa5"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
@@ -210,7 +210,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Left"",
                     ""id"": ""5a665a4c-8704-4820-85ff-080e0b07d411"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
@@ -221,7 +221,7 @@ public partial class @MarbleControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
+                    ""name"": ""Right"",
                     ""id"": ""04acd672-fb77-4f3e-8dac-1a1160f4f16b"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
