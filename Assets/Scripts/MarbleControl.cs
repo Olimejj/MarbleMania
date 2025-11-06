@@ -39,6 +39,13 @@ public class MarbleControl: MonoBehaviour
 
 
         moveInput = ctrl.Marble.Move.ReadValue<Vector2>();
+        rotateInput = ctrl.Marble.Turn.ReadValue<Vector2>();
+
+        if(rotateInput.magnitude > 0.1f){
+            Vector3 angleVelocity = new Vector3(0f, rotateInput.x * turnSpeed, 0f);
+            Quaternion deltaRot = Quaternion.Euler(angleVelocity * Time.deltaTime);
+            rigi.MoveRotation(rigi.rotation * deltaRot);
+        }
 
         if(moveInput.magnitude > 0.1f){
             Vector3 moveForward = moveInput.y * this.transform.forward;
