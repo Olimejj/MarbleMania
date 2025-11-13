@@ -15,6 +15,8 @@ public class MarbleControl: MonoBehaviour
     private Vector2 rotateInput;
     private Rigidbody rigi;
     private MarbleControls ctrl;
+    
+    private int keyCount;
 
     void jump(UnityEngine.InputSystem.InputAction.CallbackContext context){
         if (grounded){
@@ -27,6 +29,8 @@ public class MarbleControl: MonoBehaviour
         ctrl = new MarbleControls();
         ctrl.Enable();
         ctrl.Marble.Jump.started += jump;
+
+        keyCount = 0;
     }
 
     void OnDisable(){
@@ -54,6 +58,14 @@ public class MarbleControl: MonoBehaviour
             rigi.AddForce(moveVector * walkSpeed * Time.deltaTime);
 
             rigi.linearVelocity = Vector3.ClampMagnitude(rigi.linearVelocity, maxWalk);
+        }
+    }
+
+    void OnTriggerEnter(Collider other){
+        if(other.transform.tag == "Key"){
+            keyCount++;
+            Debug.Log(keyCount);
+            Destroy(other.gameObject);
         }
     }
 
