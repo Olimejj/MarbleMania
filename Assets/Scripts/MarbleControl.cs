@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MarbleControl: MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class MarbleControl: MonoBehaviour
     private MarbleControls ctrl;
     
     private int keyCount;
+    public int minKeys;
 
     void jump(UnityEngine.InputSystem.InputAction.CallbackContext context){
         if (grounded){
@@ -66,6 +68,14 @@ public class MarbleControl: MonoBehaviour
             keyCount++;
             Debug.Log(keyCount);
             Destroy(other.gameObject);
+        }
+        else if(other.transform.tag == "Finish"){
+            Debug.Log("door");
+            if(keyCount >= minKeys){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else {
+                Debug.Log("you need more keys");
+            }
         }
     }
 
