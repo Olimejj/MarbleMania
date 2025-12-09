@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MarbleControl: MonoBehaviour
 {
@@ -20,11 +21,23 @@ public class MarbleControl: MonoBehaviour
     private int keyCount;
     public int minKeys;
 
+    public TextMeshProUGUI displayKeys;
+    public TextMeshProUGUI displayTimer;
+    private float timer;
+
     void jump(UnityEngine.InputSystem.InputAction.CallbackContext context){
         if (grounded){
             rigi.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
+    }
+
+    void UpdateKeys(){
+        displayKeys.text = "Keys: " + keyCount.ToString("00") + " / " + minKeys.ToString("00");
+    }
+
+    void UpdateTimer(){
+        displayTimer.text = timer.ToString("000.00");
     }
     void Awake() {
         rigi = GetComponent<Rigidbody>();
@@ -33,6 +46,9 @@ public class MarbleControl: MonoBehaviour
         ctrl.Marble.Jump.started += jump;
 
         keyCount = 0;
+        UpdateKeys();
+        timer = 0f;
+        UpdateTimer();
     }
 
     void OnDisable(){
@@ -46,6 +62,9 @@ public class MarbleControl: MonoBehaviour
 
         moveInput = ctrl.Marble.Move.ReadValue<Vector2>();
         rotateInput = ctrl.Marble.Turn.ReadValue<Vector2>();
+
+        timer += Time.deltaTime;
+        UpdateTimer();
 
         if(rotateInput.magnitude > 0.1f){
             Vector3 angleVelocity = new Vector3(0f, rotateInput.x * turnSpeed, 0f);
@@ -66,8 +85,8 @@ public class MarbleControl: MonoBehaviour
     void OnTriggerEnter(Collider other){
         if(other.transform.tag == "Key"){
             keyCount++;
-            Debug.Log(keyCount);
             Destroy(other.gameObject);
+            UpdateKeys();
         }
         else if(other.transform.tag == "Finish"){
             Debug.Log("door");
