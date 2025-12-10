@@ -12,6 +12,7 @@ public class MarbleControl: MonoBehaviour
     public float probeLen;
     public bool grounded;
     public LayerMask whatIsGround;
+    public bool isAlive;
 
     private Vector2 moveInput;
     private Vector2 rotateInput;
@@ -44,7 +45,7 @@ public class MarbleControl: MonoBehaviour
         ctrl = new MarbleControls();
         ctrl.Enable();
         ctrl.Marble.Jump.started += jump;
-
+        isAlive = true;
         keyCount = 0;
         UpdateKeys();
         timer = 0f;
@@ -57,28 +58,30 @@ public class MarbleControl: MonoBehaviour
 
     private void FixedUpdate(){
 
-        grounded = Physics.Raycast(this.transform.position, Vector3.down, probeLen, whatIsGround);
+        if (isAlive){
+            grounded = Physics.Raycast(this.transform.position, Vector3.down, probeLen, whatIsGround);
 
 
-        moveInput = ctrl.Marble.Move.ReadValue<Vector2>();
-        rotateInput = ctrl.Marble.Turn.ReadValue<Vector2>();
+            moveInput = ctrl.Marble.Move.ReadValue<Vector2>();
+            rotateInput = ctrl.Marble.Turn.ReadValue<Vector2>();
 
-        timer += Time.deltaTime;
-        UpdateTimer();
+            timer += Time.deltaTime;
+            UpdateTimer();
 
-        if(rotateInput.magnitude > 0.1f){
-            Vector3 angleVelocity = new Vector3(0f, rotateInput.x * turnSpeed, 0f);
-            Quaternion deltaRot = Quaternion.Euler(angleVelocity * Time.deltaTime);
-            rigi.MoveRotation(rigi.rotation * deltaRot);
-        }
+            if(rotateInput.magnitude > 0.1f){
+                Vector3 angleVelocity = new Vector3(0f, rotateInput.x * turnSpeed, 0f);
+                Quaternion deltaRot = Quaternion.Euler(angleVelocity * Time.deltaTime);
+                rigi.MoveRotation(rigi.rotation * deltaRot);
+            }
 
-        if(moveInput.magnitude > 0.1f){
-            Vector3 moveForward = moveInput.y * this.transform.forward;
-            Vector3 moveRight = moveInput.x * this.transform.right;
-            Vector3 moveVector = moveForward + moveRight;
-            rigi.AddForce(moveVector * walkSpeed * Time.deltaTime);
+            if(moveInput.magnitude > 0.1f){
+                Vector3 moveForward = moveInput.y * this.transform.forward;
+                Vector3 moveRight = moveInput.x * this.transform.right;
+                Vector3 moveVector = moveForward + moveRight;
+                rigi.AddForce(moveVector * walkSpeed * Time.deltaTime);
 
-            rigi.linearVelocity = Vector3.ClampMagnitude(rigi.linearVelocity, maxWalk);
+                rigi.linearVelocity = Vector3.ClampMagnitude(rigi.linearVelocity, maxWalk);
+            }
         }
     }
 
@@ -95,6 +98,12 @@ public class MarbleControl: MonoBehaviour
             } else {
                 Debug.Log("you need more keys");
             }
+        }
+    }
+
+    void OnCollisionEnter(Collision other){
+        if(other.transform.tag == "Enemy"){
+            isAlive = false;
         }
     }
 
