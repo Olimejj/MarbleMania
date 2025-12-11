@@ -25,6 +25,7 @@ public class MarbleControl: MonoBehaviour
     public TextMeshProUGUI displayKeys;
     public TextMeshProUGUI displayTimer;
     private float timer;
+    public GameObject restartButton;
 
     void jump(UnityEngine.InputSystem.InputAction.CallbackContext context){
         if (grounded){
@@ -50,6 +51,7 @@ public class MarbleControl: MonoBehaviour
         UpdateKeys();
         timer = 0f;
         UpdateTimer();
+        restartButton.SetActive(false);
     }
 
     void OnDisable(){
@@ -104,6 +106,7 @@ public class MarbleControl: MonoBehaviour
     void OnCollisionEnter(Collision other){
         if(other.transform.tag == "Enemy"){
             isAlive = false;
+            restartButton.SetActive(true);
         }
     }
 
